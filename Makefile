@@ -19,4 +19,10 @@ sqlc:
 test:
 	go test -v -cover ./...
 
-.PHONY: postgres createdb dropdb migrateup migratedown sqlc test
+postgresdown:
+	docker stop postgres12
+
+postgresup:
+	docker start postgres12
+
+.PHONY: postgres createdb dropdb migrateup migratedown sqlc test postgresdown postgresup
