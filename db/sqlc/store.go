@@ -84,6 +84,14 @@ func (store *Store) TransferTx(ctx context.Context, arg TransferTxParams) (Trans
 			return err
 		}
 
+		/**
+		* not sure how changing the order of execution solves the problem of db lock here
+		* my conclusion is that since the execution are happening in random order (becuase of the go routine)
+		* the odd number of i are opposite to the even number of i when it comes to transaction
+		* so basically that locks one set of transactions dependent on the other set of transactions
+		* by making it in the below format we make sure that odd i happens in its transaction level
+		* meanwhile even i happens in another level
+		**/
 		if arg.FromAccountID < arg.ToAccountID {
 			result.FromAccount, result.ToAccount, err = addMoney(ctx, q, arg.FromAccountID, -arg.Amount, arg.ToAccountID, arg.Amount)
 		} else {
