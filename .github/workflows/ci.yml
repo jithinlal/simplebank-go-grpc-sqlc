@@ -36,7 +36,7 @@ jobs:
           which migrate
 
       - name: Run migrations
-        run: make migratup
+        run: make migrateup
 
       - name: Set up Go
         uses: actions/setup-go@v4
