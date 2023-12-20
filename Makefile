@@ -25,4 +25,7 @@ postgresdown:
 postgresup:
 	docker start postgres12
 
-.PHONY: postgres createdb dropdb migrateup migratedown sqlc test postgresdown postgresup
+server:
+	go run main.go
+
+.PHONY: postgres createdb dropdb migrateup migratedown sqlc test postgresdown postgresup server
