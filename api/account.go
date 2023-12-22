@@ -2,6 +2,7 @@ package api
 
 import (
 	"database/sql"
+	"errors"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -50,7 +51,7 @@ func (server *Server) getAccount(ctx *gin.Context) {
 
 	account, err := server.store.GetAccount(ctx, req.ID)
 	if err != nil {
-		if err == sql.ErrNoRows {
+		if errors.Is(err, sql.ErrNoRows) {
 			ctx.JSON(http.StatusNotFound, errorResponse(err))
 			return
 		}
@@ -89,15 +90,19 @@ func (server *Server) listAccount(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, accounts)
 }
 
+type updateAccountRequestParam struct {
+	ID int64 `uri:"id" binding:"required,min=1"`
+}
+
 type updateAccountRequest struct {
-	ID      int64 `uri:"id" binding:"required,min=1"`
 	Balance int64 `json:"balance" binding:"required,min=0"`
 }
 
 func (server *Server) updateAccount(ctx *gin.Context) {
+	var reqParam updateAccountRequestParam
 	var req updateAccountRequest
 
-	if err := ctx.ShouldBindUri(&req); err != nil {
+	if err := ctx.ShouldBindUri(&reqParam); err != nil {
 		ctx.JSON(http.StatusBadRequest, errorResponse(err))
 		return
 	}
@@ -108,7 +113,7 @@ func (server *Server) updateAccount(ctx *gin.Context) {
 	}
 
 	arg := db.UpdateAccountParams{
-		ID:      req.ID,
+		ID:      reqParam.ID,
 		Balance: req.Balance,
 	}
 
@@ -135,7 +140,7 @@ func (server *Server) deleteAccount(ctx *gin.Context) {
 
 	err := server.store.DeleteAccount(ctx, req.ID)
 	if err != nil {
-		if err == sql.ErrNoRows {
+		if errors.Is(err, sql.ErrNoRows) {
 			ctx.JSON(http.StatusNotFound, errorResponse(err))
 			return
 		}
