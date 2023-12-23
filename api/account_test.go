@@ -5,17 +5,18 @@ import (
 	"database/sql"
 	"encoding/json"
 	"fmt"
+	"io"
+	"net/http"
+	"net/http/httptest"
+	"strconv"
+	"testing"
+
 	"github.com/gin-gonic/gin"
 	mockdb "github.com/jithinlal/simplebank/db/mock"
 	db "github.com/jithinlal/simplebank/db/sqlc"
 	"github.com/jithinlal/simplebank/util"
 	"github.com/stretchr/testify/require"
 	"go.uber.org/mock/gomock"
-	"io"
-	"net/http"
-	"net/http/httptest"
-	"strconv"
-	"testing"
 )
 
 func TestGetAccountAPI(t *testing.T) {

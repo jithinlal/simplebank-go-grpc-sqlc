@@ -28,6 +28,9 @@ postgresup:
 server:
 	go run main.go
 
+lint:
+	golangci-lint run --fix
+
 mock:
 	mockgen -package mockdb -destination db/mock/store.go github.com/jithinlal/simplebank/db/sqlc Store
 
