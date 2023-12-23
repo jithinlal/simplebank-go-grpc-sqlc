@@ -16,7 +16,7 @@ migratedown:
 sqlc:
 	sqlc generate
 
-test:
+test: mock
 	go test -v -cover ./...
 
 postgresdown:
@@ -31,7 +31,13 @@ server:
 lint:
 	golangci-lint run --fix
 
+setup:
+	make postgres
+	make createdb
+	make migrateup
+	make sqlc
+
 mock:
 	mockgen -package mockdb -destination db/mock/store.go github.com/jithinlal/simplebank/db/sqlc Store
 
-.PHONY: postgres createdb dropdb migrateup migratedown sqlc test postgresdown postgresup server mock
+.PHONY: postgres createdb dropdb migrateup migratedown sqlc test postgresdown postgresup server mock lint setup
