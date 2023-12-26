@@ -8,6 +8,7 @@ on:
 
 jobs:
   test:
+    environment: dev
     name: Test
     runs-on: ubuntu-latest
 
@@ -30,9 +31,9 @@ jobs:
       - name: 'Create env file'
         run: |
           touch app.env
-          echo DB_DRIVER=${{ secrets.DB_DRIVER }} > app.env
-          echo DB_SOURCE=${{ secrets.DB_SOURCE }} > app.env         
-          echo SERVER_ADDRESS=${{ secrets.SERVER_ADDRESS }} > app.env                   
+          echo DB_DRIVER=${{ secrets.DB_DRIVER }} >> app.env
+          echo DB_SOURCE=${{ secrets.DB_SOURCE }} >> app.env         
+          echo SERVER_ADDRESS=${{ secrets.SERVER_ADDRESS }} >> app.env                   
           cat app.env
 
       - uses: actions/checkout@v3
