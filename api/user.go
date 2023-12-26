@@ -2,12 +2,13 @@ package api
 
 import (
 	"errors"
+	"net/http"
+	"time"
+
 	"github.com/gin-gonic/gin"
 	db "github.com/jithinlal/simplebank/db/sqlc"
 	"github.com/jithinlal/simplebank/util"
 	"github.com/lib/pq"
-	"net/http"
-	"time"
 )
 
 type createUserRequest struct {

@@ -3,8 +3,9 @@ package api
 import (
 	"database/sql"
 	"errors"
-	"github.com/lib/pq"
 	"net/http"
+
+	"github.com/lib/pq"
 
 	"github.com/gin-gonic/gin"
 	db "github.com/jithinlal/simplebank/db/sqlc"

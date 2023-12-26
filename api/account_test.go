@@ -40,7 +40,7 @@ func TestGetAccountAPI(t *testing.T) {
 			},
 			checkResponse: func(t *testing.T, recorder *httptest.ResponseRecorder) {
 				require.Equal(t, http.StatusOK, recorder.Code)
-				requireBodyMathAccount(t, recorder.Body, account)
+				requireBodyMatchAccount(t, recorder.Body, account)
 			},
 		},
 		{
@@ -135,7 +135,7 @@ func TestCreateAccountAPI(t *testing.T) {
 			},
 			checkResponse: func(t *testing.T, recorder *httptest.ResponseRecorder) {
 				require.Equal(t, http.StatusOK, recorder.Code)
-				requireBodyMathAccount(t, recorder.Body, account)
+				requireBodyMatchAccount(t, recorder.Body, account)
 			},
 		},
 		{
@@ -240,7 +240,7 @@ func TestListAccountsAPI(t *testing.T) {
 			},
 			checkResponse: func(t *testing.T, recorder *httptest.ResponseRecorder) {
 				require.Equal(t, http.StatusOK, recorder.Code)
-				requireBodyMathAccounts(t, recorder.Body, accounts)
+				requireBodyMatchAccounts(t, recorder.Body, accounts)
 			},
 		},
 		{
@@ -293,7 +293,7 @@ func TestListAccountsAPI(t *testing.T) {
 			},
 			checkResponse: func(t *testing.T, recorder *httptest.ResponseRecorder) {
 				require.Equal(t, http.StatusOK, recorder.Code)
-				requireBodyMathAccounts(t, recorder.Body, []db.Account{})
+				requireBodyMatchAccounts(t, recorder.Body, []db.Account{})
 			},
 		},
 	}
@@ -356,7 +356,7 @@ func TestUpdateAccountAPI(t *testing.T) {
 			},
 			checkResponse: func(t *testing.T, recorder *httptest.ResponseRecorder) {
 				require.Equal(t, http.StatusOK, recorder.Code)
-				requireBodyMathAccount(t, recorder.Body, account)
+				requireBodyMatchAccount(t, recorder.Body, account)
 			},
 		},
 		{
@@ -501,7 +501,7 @@ func randomAccount() db.Account {
 	}
 }
 
-func requireBodyMathAccount(t *testing.T, body *bytes.Buffer, account db.Account) {
+func requireBodyMatchAccount(t *testing.T, body *bytes.Buffer, account db.Account) {
 	data, err := io.ReadAll(body)
 	require.NoError(t, err)
 
@@ -512,7 +512,7 @@ func requireBodyMathAccount(t *testing.T, body *bytes.Buffer, account db.Account
 	require.Equal(t, account, gotAccount)
 }
 
-func requireBodyMathAccounts(t *testing.T, body *bytes.Buffer, accounts []db.Account) {
+func requireBodyMatchAccounts(t *testing.T, body *bytes.Buffer, accounts []db.Account) {
 	data, err := io.ReadAll(body)
 	require.NoError(t, err)
 
