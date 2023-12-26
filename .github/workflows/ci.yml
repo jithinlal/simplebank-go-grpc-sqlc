@@ -57,5 +57,4 @@ jobs:
 
       - name: Test
         run: |
-          make test
-          ls -lah
+          make test          
