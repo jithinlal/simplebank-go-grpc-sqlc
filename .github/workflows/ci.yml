@@ -35,6 +35,7 @@ jobs:
           echo DB_SOURCE=${{ secrets.DB_SOURCE }} >> app.env         
           echo SERVER_ADDRESS=${{ secrets.SERVER_ADDRESS }} >> app.env                   
           cat app.env
+          ls -lah
 
       - uses: actions/checkout@v3
 
