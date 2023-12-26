@@ -35,6 +35,10 @@ jobs:
           sudo mv migrate /usr/bin/migrate
           which migrate
 
+      - name: Install mockgen
+        run: |
+          go install github.com/golang/mock/mockgen@v1.6.0
+
       - name: Run migrations
         run: make migrateup
 
