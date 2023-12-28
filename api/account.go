@@ -3,8 +3,9 @@ package api
 import (
 	"database/sql"
 	"errors"
-	"github.com/jithinlal/simplebank/token"
 	"net/http"
+
+	"github.com/jithinlal/simplebank/token"
 
 	"github.com/lib/pq"
 

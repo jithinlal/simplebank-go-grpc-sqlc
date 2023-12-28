@@ -2,13 +2,14 @@ package api
 
 import (
 	"fmt"
-	"github.com/gin-gonic/gin"
-	"github.com/jithinlal/simplebank/token"
-	"github.com/stretchr/testify/require"
 	"net/http"
 	"net/http/httptest"
 	"testing"
 	"time"
+
+	"github.com/gin-gonic/gin"
+	"github.com/jithinlal/simplebank/token"
+	"github.com/stretchr/testify/require"
 )
 
 func addAuthorization(

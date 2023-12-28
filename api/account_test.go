@@ -5,13 +5,14 @@ import (
 	"database/sql"
 	"encoding/json"
 	"fmt"
-	"github.com/jithinlal/simplebank/token"
 	"io"
 	"net/http"
 	"net/http/httptest"
 	"strconv"
 	"testing"
 	"time"
+
+	"github.com/jithinlal/simplebank/token"
 
 	"github.com/gin-gonic/gin"
 	mockdb "github.com/jithinlal/simplebank/db/mock"

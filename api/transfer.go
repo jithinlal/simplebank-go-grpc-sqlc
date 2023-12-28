@@ -4,8 +4,9 @@ import (
 	"database/sql"
 	"errors"
 	"fmt"
-	"github.com/jithinlal/simplebank/token"
 	"net/http"
+
+	"github.com/jithinlal/simplebank/token"
 
 	"github.com/gin-gonic/gin"
 	db "github.com/jithinlal/simplebank/db/sqlc"

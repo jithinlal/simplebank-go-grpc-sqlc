@@ -4,11 +4,12 @@ import (
 	"bytes"
 	"database/sql"
 	"encoding/json"
-	"github.com/jithinlal/simplebank/token"
 	"net/http"
 	"net/http/httptest"
 	"testing"
 	"time"
+
+	"github.com/jithinlal/simplebank/token"
 
 	"github.com/gin-gonic/gin"
 	mockdb "github.com/jithinlal/simplebank/db/mock"

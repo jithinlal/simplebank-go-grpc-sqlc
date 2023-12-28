@@ -3,10 +3,11 @@ package api
 import (
 	"errors"
 	"fmt"
-	"github.com/gin-gonic/gin"
-	"github.com/jithinlal/simplebank/token"
 	"net/http"
 	"strings"
+
+	"github.com/gin-gonic/gin"
+	"github.com/jithinlal/simplebank/token"
 )
 
 const (
