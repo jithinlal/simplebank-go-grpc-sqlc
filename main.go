@@ -2,13 +2,14 @@ package main
 
 import (
 	"database/sql"
+	"log"
+	"net"
+
 	"github.com/jithinlal/simplebank/api"
 	"github.com/jithinlal/simplebank/gapi"
 	"github.com/jithinlal/simplebank/pb"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
-	"log"
-	"net"
 
 	db "github.com/jithinlal/simplebank/db/sqlc"
 	"github.com/jithinlal/simplebank/util"
@@ -53,6 +54,7 @@ func runGrpcServer(config util.Config, store db.Store) {
 	}
 }
 
+// nolint: unused
 func runGinServer(config util.Config, store db.Store) {
 	server, err := api.NewServer(config, store)
 	if err != nil {

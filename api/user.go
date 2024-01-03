@@ -3,9 +3,10 @@ package api
 import (
 	"database/sql"
 	"errors"
-	"github.com/google/uuid"
 	"net/http"
 	"time"
+
+	"github.com/google/uuid"
 
 	"github.com/gin-gonic/gin"
 	db "github.com/jithinlal/simplebank/db/sqlc"
