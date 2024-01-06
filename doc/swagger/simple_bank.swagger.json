@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "title": "Simple bank API",
-    "version": "1.1",
+    "version": "1.2",
     "contact": {
       "name": "Jithinlal",
       "url": "https://github.com/jithinlal"
@@ -20,6 +20,45 @@
     "application/json"
   ],
   "paths": {
+    "/v1/create_account": {
+      "post": {
+        "summary": "Create an account",
+        "description": "Use this API to create an account",
+        "operationId": "SimpleBank_CreateAccount",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pbCreateAccountResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/pbCreateAccountRequest"
+            }
+          }
+        ],
+        "tags": [
+          "SimpleBank"
+        ],
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
     "/v1/create_user": {
       "post": {
         "summary": "Create new user",
@@ -89,7 +128,7 @@
       }
     },
     "/v1/update_user": {
-      "post": {
+      "patch": {
         "summary": "Update a user",
         "description": "Use this API to update a user",
         "operationId": "SimpleBank_UpdateUser",
@@ -119,11 +158,55 @@
         ],
         "tags": [
           "SimpleBank"
+        ],
+        "security": [
+          {
+            "Authorization": []
+          }
         ]
       }
     }
   },
   "definitions": {
+    "pbAccount": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "owner": {
+          "type": "string"
+        },
+        "balance": {
+          "type": "string",
+          "format": "int64"
+        },
+        "currency": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "pbCreateAccountRequest": {
+      "type": "object",
+      "properties": {
+        "currency": {
+          "type": "string"
+        }
+      }
+    },
+    "pbCreateAccountResponse": {
+      "type": "object",
+      "properties": {
+        "account": {
+          "$ref": "#/definitions/pbAccount"
+        }
+      }
+    },
     "pbCreateUserRequest": {
       "type": "object",
       "properties": {
@@ -259,6 +342,14 @@
           }
         }
       }
+    }
+  },
+  "securityDefinitions": {
+    "Authorization": {
+      "type": "apiKey",
+      "description": "Enter the token with `Bearer: ` prefix. e.g: 'Bearer xyz'",
+      "name": "Authorization",
+      "in": "header"
     }
   }
 }
