@@ -31,7 +31,7 @@ func (server *Server) LoginUser(ctx context.Context, req *pb.LoginUserRequest) (
 
 	err = util.CheckPassword(req.Password, user.HashedPassword)
 	if err != nil {
-		return nil, status.Errorf(codes.PermissionDenied, "unauthorised: %s", err)
+		return nil, status.Errorf(codes.PermissionDenied, "unauthorised: incorrect username/password")
 	}
 
 	accessToken, accessTokenPayload, err := server.tokenMaker.CreateToken(user.Username, server.config.AccessTokenDuration)
