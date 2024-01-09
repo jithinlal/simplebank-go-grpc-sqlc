@@ -93,6 +93,45 @@
         ]
       }
     },
+    "/v1/delete_account/{id}": {
+      "delete": {
+        "summary": "Delete an account",
+        "description": "Use this API to delete an account",
+        "operationId": "SimpleBank_DeleteAccount",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "SimpleBank"
+        ],
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
     "/v1/get_account/{id}": {
       "get": {
         "summary": "Get an account",

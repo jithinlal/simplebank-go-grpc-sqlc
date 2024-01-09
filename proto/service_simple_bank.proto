@@ -3,12 +3,14 @@ syntax = "proto3";
 package pb;
 
 import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
 import "rpc_create_user.proto";
 import "rpc_login_user.proto";
 import "rpc_update_user.proto";
 import "rpc_create_account.proto";
 import "rpc_get_account.proto";
 import "rpc_update_account.proto";
+import "rpc_delete_account.proto";
 import "protoc-gen-openapiv2/options/annotations.proto";
 
 option go_package = "github.com/jithinlal/simplebank/pb";
@@ -47,6 +49,7 @@ service SimpleBank {
       summary: "Create new user";
     };
   }
+
   rpc LoginUser(LoginUserRequest) returns (LoginUserResponse) {
     option (google.api.http) = {
       post: "/v1/login_user"
@@ -58,6 +61,7 @@ service SimpleBank {
       summary: "Login a user";
     };
   }
+
   rpc UpdateUser(UpdateUserRequest) returns (UpdateUserResponse) {
     option (google.api.http) = {
       patch: "/v1/update_user"
@@ -74,6 +78,7 @@ service SimpleBank {
       }
     };
   }
+
   rpc CreateAccount(CreateAccountRequest) returns (CreateAccountResponse) {
     option (google.api.http) = {
       post: "/v1/create_account"
@@ -90,6 +95,7 @@ service SimpleBank {
       }
     };
   }
+
   rpc GetAccount(GetAccountRequest) returns (GetAccountResponse) {
     option (google.api.http) = {
       get: "/v1/get_account/{id}"
@@ -115,6 +121,22 @@ service SimpleBank {
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
       description: "Use this API to update an account";
       summary: "Update an account";
+      security: {
+        security_requirement: {
+          key: "Authorization";
+        }
+      }
+    };
+  }
+
+  rpc DeleteAccount(DeleteAccountRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      delete: "/v1/delete_account/{id}"
+    };
+
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "Use this API to delete an account";
+      summary: "Delete an account";
       security: {
         security_requirement: {
           key: "Authorization";
