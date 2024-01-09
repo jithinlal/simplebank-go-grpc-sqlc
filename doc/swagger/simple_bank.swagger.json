@@ -93,6 +93,44 @@
         ]
       }
     },
+    "/v1/get_account": {
+      "get": {
+        "summary": "Get an account",
+        "description": "Use this API to get an account",
+        "operationId": "SimpleBank_GetAccount",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pbGetAccountResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "SimpleBank"
+        ],
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
     "/v1/login_user": {
       "post": {
         "summary": "Login a user",
@@ -229,6 +267,14 @@
       "properties": {
         "user": {
           "$ref": "#/definitions/pbUser"
+        }
+      }
+    },
+    "pbGetAccountResponse": {
+      "type": "object",
+      "properties": {
+        "account": {
+          "$ref": "#/definitions/pbAccount"
         }
       }
     },
