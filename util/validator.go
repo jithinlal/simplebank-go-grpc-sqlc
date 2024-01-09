@@ -67,3 +67,11 @@ func ValidateId(value string) error {
 
 	return nil
 }
+
+func ValidateBalance(value int64) error {
+	if value < 0 {
+		return fmt.Errorf("must be above 0")
+	}
+
+	return nil
+}

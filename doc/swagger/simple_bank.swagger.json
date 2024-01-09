@@ -165,6 +165,52 @@
         ]
       }
     },
+    "/v1/update_account/{id}": {
+      "put": {
+        "summary": "Update an account",
+        "description": "Use this API to update an account",
+        "operationId": "SimpleBank_UpdateAccount",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pbUpdateAccountResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/SimpleBankUpdateAccountBody"
+            }
+          }
+        ],
+        "tags": [
+          "SimpleBank"
+        ],
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
     "/v1/update_user": {
       "patch": {
         "summary": "Update a user",
@@ -206,6 +252,15 @@
     }
   },
   "definitions": {
+    "SimpleBankUpdateAccountBody": {
+      "type": "object",
+      "properties": {
+        "balance": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
     "pbAccount": {
       "type": "object",
       "properties": {
@@ -311,6 +366,14 @@
         "refreshTokenExpiresAt": {
           "type": "string",
           "format": "date-time"
+        }
+      }
+    },
+    "pbUpdateAccountResponse": {
+      "type": "object",
+      "properties": {
+        "account": {
+          "$ref": "#/definitions/pbAccount"
         }
       }
     },

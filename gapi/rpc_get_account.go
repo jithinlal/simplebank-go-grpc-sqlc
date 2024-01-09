@@ -46,7 +46,7 @@ func (server *Server) GetAccount(ctx context.Context, req *pb.GetAccountRequest)
 func validateGetAccountRequest(req *pb.GetAccountRequest) (violations []*errdetails.BadRequest_FieldViolation) {
 	id := strconv.Itoa(int(req.GetId()))
 	if err := util.ValidateId(id); err != nil {
-		violations = append(violations, fieldViolation("currency", errors.New("unsupported id")))
+		violations = append(violations, fieldViolation("id", errors.New("unsupported id")))
 	}
 
 	return violations
