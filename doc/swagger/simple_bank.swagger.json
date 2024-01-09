@@ -93,7 +93,7 @@
         ]
       }
     },
-    "/v1/get_account": {
+    "/v1/get_account/{id}": {
       "get": {
         "summary": "Get an account",
         "description": "Use this API to get an account",
@@ -115,8 +115,8 @@
         "parameters": [
           {
             "name": "id",
-            "in": "query",
-            "required": false,
+            "in": "path",
+            "required": true,
             "type": "string",
             "format": "int64"
           }

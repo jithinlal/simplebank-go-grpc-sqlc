@@ -91,7 +91,7 @@ service SimpleBank {
   }
   rpc GetAccount(GetAccountRequest) returns (GetAccountResponse) {
     option (google.api.http) = {
-      get: "/v1/get_account"
+      get: "/v1/get_account/{id}"
     };
 
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
