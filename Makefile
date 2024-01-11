@@ -3,6 +3,9 @@ DB_PATH=postgresql://root:secret@localhost:5432/simple_bank?sslmode=disable
 postgres:
 	docker run --name postgres12 -p 5432:5432 -e POSTGRES_USER=root -e POSTGRES_PASSWORD=secret -d postgres:12-alpine
 
+redis:
+	docker run --name redis -p 6379:6379 -d redis:7-alpine
+
 createdb:
 	docker exec -it postgres12 createdb --username=root --owner=root simple_bank
 
@@ -55,4 +58,4 @@ proto:
 evans:
 	evans --host localhost --port 9090 -r repl
 
-.PHONY: postgres createdb dropdb migrateup migratedown sqlc test postgresdown postgresup server mock lint setup proto evans
+.PHONY: postgres createdb dropdb migrateup migratedown sqlc test postgresdown postgresup server mock lint setup proto evans redis
