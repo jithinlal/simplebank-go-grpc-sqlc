@@ -6,6 +6,11 @@ postgres:
 redis:
 	docker run --name redis -p 6379:6379 -d redis:7-alpine
 
+start:
+	docker start postgres12
+	docker start redis
+	make server
+
 createdb:
 	docker exec -it postgres12 createdb --username=root --owner=root simple_bank
 
