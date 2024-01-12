@@ -27,7 +27,7 @@ sqlc:
 	sqlc generate
 
 test: mock
-	go test -v -cover ./...
+	go test -v -cover -short ./...
 
 postgresdown:
 	docker stop postgres12
