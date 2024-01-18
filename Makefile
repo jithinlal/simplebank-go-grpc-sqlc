@@ -23,6 +23,9 @@ migrateup:
 migratedown:
 	migrate -path db/migrations -database "$(DB_PATH)" -verbose down
 
+new_migration:
+	migrate create -ext sql -dir db/migrations -seq $(name)
+
 sqlc:
 	sqlc generate
 
@@ -63,4 +66,4 @@ proto:
 evans:
 	evans --host localhost --port 9090 -r repl
 
-.PHONY: postgres createdb dropdb migrateup migratedown sqlc test postgresdown postgresup server mock lint setup proto evans redis
+.PHONY: postgres createdb dropdb migrateup migratedown new_migration sqlc test postgresdown postgresup server mock lint setup proto evans redis

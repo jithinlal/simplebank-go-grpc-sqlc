@@ -1,9 +1,10 @@
 package mail
 
 import (
+	"testing"
+
 	"github.com/jithinlal/simplebank/util"
 	"github.com/stretchr/testify/require"
-	"testing"
 )
 
 func TestSendEmailWithGmail(t *testing.T) {

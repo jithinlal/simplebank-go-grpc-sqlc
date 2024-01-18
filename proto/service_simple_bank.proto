@@ -11,6 +11,7 @@ import "rpc_create_account.proto";
 import "rpc_get_account.proto";
 import "rpc_update_account.proto";
 import "rpc_delete_account.proto";
+import "rpc_verify_email.proto";
 import "protoc-gen-openapiv2/options/annotations.proto";
 
 option go_package = "github.com/jithinlal/simplebank/pb";
@@ -142,6 +143,17 @@ service SimpleBank {
           key: "Authorization";
         }
       }
+    };
+  }
+
+  rpc VerifyEmail (VerifyEmailRequest) returns (VerifyEmailResponse) {
+    option (google.api.http) = {
+      get: "/v1/verify_email"
+    };
+
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "Use this API to verify user's email address";
+      summary: "Verify a user email";
     };
   }
 }
